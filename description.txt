@@ -1,0 +1,22 @@
+Тестовое задание
+0. Запустить проект GeneratorApp и сгенерировать данные (файл stub.csv)
+Проект/приложение №1
+1. Считать данные из файла (файл stub.csv) и загрузить их (данные) в СУБД
+Структура таблицы
+CREATE TABLE `database`.`stub` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `stub_value` VARCHAR(16) NOT NULL,
+  `first_value` INT NOT NULL,
+  `second_value` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+Проект/приложение №2
+2. Приложение должно обрабатывать данные в СУБД таким образом, чтобы при каждом запуске в ячейку `second_value` записывалось значение кол-ва букв из `stub_value` (суммировалось с предыдущим значением ячейки).
+
+Требования к проектам:
+Console application
+Maven-проект
+Hibernate*
+MySql
+
+* очень рекомендую использовать Hikari (connection pool для Hibernate)
