@@ -1,16 +1,12 @@
 package ua.com.codefire.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by gleb on 31.05.17.
  */
 @Entity
+@NamedQuery(name = "insertStub",query = "insert into stub2 (stub_value, first_value, second_value) values (:stubValue, :firstValue, LENGTH(stub_value)+first_value)")
 @Table(name = "stub")
 public class StubEntity {
 

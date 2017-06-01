@@ -8,5 +8,6 @@ import ua.com.codefire.dao.entity.StubEntity;
 public interface StubDao {
 
     StubEntity saveStub(StubEntity stubEntity);
+    StubEntity saveStub2(String stubValue, Integer firstValue);
 
 }
