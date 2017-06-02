@@ -10,15 +10,15 @@ import javax.persistence.*;
  */
 public class StubDaoImpl implements StubDao {
 
-    private static StubDao stubDao = null;
-
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("ua.com.codefire");
+    private final String nativeInsert = "insert into stub2 (stub_value, first_value, second_value) values (:stubValue, :firstValue, LENGTH(stub_value)+first_value)";
 
-    public synchronized static StubDao getInstance() {
-        if (stubDao == null) {
-            stubDao = new StubDaoImpl();
-        }
-        return stubDao;
+    private static class SingletonStubDao {
+        private final static StubDao stubDao = new StubDaoImpl();
+    }
+
+    public static StubDao getInstance() {
+        return SingletonStubDao.stubDao;
     }
 
     @Override
@@ -31,11 +31,11 @@ public class StubDaoImpl implements StubDao {
     }
 
     @Override
-    public StubEntity saveStub2(String stubValue, Integer firstValue) {
+    public StubEntity saveStubByNativeQuery(String stubValue, Integer firstValue) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        Query query = entityManager.createNamedQuery("insertStub");
+        Query query = entityManager.createNativeQuery(nativeInsert);
         query.setParameter("stubValue", stubValue);
         query.setParameter("firstValue", firstValue);
         query.executeUpdate();

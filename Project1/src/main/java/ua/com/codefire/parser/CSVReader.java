@@ -14,7 +14,6 @@ import java.util.List;
  * Created by gleb on 31.05.17.
  */
 public class CSVReader {
-
     public List<CSVRecord> getRecords() {
         File file = new File("stub.csv");
         try {
@@ -25,5 +24,4 @@ public class CSVReader {
         }
         return new ArrayList<>();
     }
-
 }

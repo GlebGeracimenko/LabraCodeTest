@@ -1,6 +1,7 @@
 package ua.com.codefire.core;
 
 import org.apache.commons.csv.CSVRecord;
+import ua.com.codefire.multithreding.ThreadForSaveByNativeQuery;
 import ua.com.codefire.parser.CSVReader;
 
 import java.util.List;
@@ -16,10 +17,10 @@ public class Main2 {
         int start = 0;
         int end = part;
         for (int i = 0; i < poolSize; i++) {
-            Saver2 saver = new Saver2(records, start, end);
+            ThreadForSaveByNativeQuery thread = new ThreadForSaveByNativeQuery(records, start, end);
             start = end;
             end += part;
-            saver.start();
+            thread.start();
         }
     }
 }
