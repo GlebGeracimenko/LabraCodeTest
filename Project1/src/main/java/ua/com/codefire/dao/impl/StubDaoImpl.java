@@ -1,5 +1,7 @@
 package ua.com.codefire.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ua.com.codefire.dao.StubDao;
 import ua.com.codefire.dao.entity.StubEntity;
 
@@ -8,18 +10,12 @@ import javax.persistence.*;
 /**
  * Created by gleb on 31.05.17.
  */
+@Repository
 public class StubDaoImpl implements StubDao {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("ua.com.codefire");
+    @Autowired
+    private EntityManagerFactory emf;
     private final String nativeInsert = "insert into stub2 (stub_value, first_value, second_value) values (:stubValue, :firstValue, LENGTH(stub_value)+first_value)";
-
-    private static class SingletonStubDao {
-        private final static StubDao stubDao = new StubDaoImpl();
-    }
-
-    public static StubDao getInstance() {
-        return SingletonStubDao.stubDao;
-    }
 
     @Override
     public StubEntity saveStub(StubEntity stubEntity) {
