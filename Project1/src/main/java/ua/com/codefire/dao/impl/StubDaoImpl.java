@@ -5,7 +5,10 @@ import org.springframework.stereotype.Repository;
 import ua.com.codefire.dao.StubDao;
 import ua.com.codefire.dao.entity.StubEntity;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 /**
  * Created by gleb on 31.05.17.
@@ -27,7 +30,7 @@ public class StubDaoImpl implements StubDao {
     }
 
     @Override
-    public StubEntity saveStubByNativeQuery(String stubValue, Integer firstValue) {
+    public void saveStubByNativeQuery(String stubValue, Integer firstValue) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
@@ -36,6 +39,5 @@ public class StubDaoImpl implements StubDao {
         query.setParameter("firstValue", firstValue);
         query.executeUpdate();
         transaction.commit();
-        return null;
     }
 }

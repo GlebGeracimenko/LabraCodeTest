@@ -51,7 +51,8 @@ public class AppConfig {
         return txManager;
     }
 
-    private DataSource dataSource() {
+    @Bean
+    public DataSource dataSource() {
         final HikariDataSource ds = new HikariDataSource();
         ds.setMinimumIdle(5);
         ds.setMaximumPoolSize(10);
@@ -64,8 +65,8 @@ public class AppConfig {
 
     private Properties hibernateProperties() {
         final Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.setProperty("hibernate.show_sql", "false");
+        properties.setProperty("hibernate.dialect", environment.getProperty("hibernate.dialect"));
+        properties.setProperty("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
         return properties;
     }
 
@@ -73,5 +74,11 @@ public class AppConfig {
     @Lazy
     public List<CSVRecord> recordsList() {
         return new CSVReader().getRecords();
+    }
+
+    @Bean
+    @Lazy
+    public Integer sizeRecords() {
+        return recordsList().size();
     }
 }

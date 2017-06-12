@@ -7,5 +7,5 @@ import ua.com.codefire.dao.entity.StubEntity;
  */
 public interface StubDao {
     StubEntity saveStub(StubEntity stubEntity);
-    StubEntity saveStubByNativeQuery(String stubValue, Integer firstValue);
+    void saveStubByNativeQuery(String stubValue, Integer firstValue);
 }

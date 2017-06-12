@@ -26,11 +26,7 @@ public class ThreadForSave extends Thread {
     protected int start;
     protected int end;
 
-//    public ThreadForSave() {
-//    }
-
     public ThreadForSave(int start, int end) {
-//        this.records = records;
         this.start = start;
         this.end = end;
     }
@@ -46,17 +42,5 @@ public class ThreadForSave extends Thread {
             stubEntity.setSecondValue(Integer.valueOf(record.get(2)));
             stubDao.saveStub(stubEntity);
         }
-    }
-
-//    public void setRecords(List<CSVRecord> records) {
-//        this.records = records;
-//    }
-
-    public void setStart(int start) {
-        this.start = start;
-    }
-
-    public void setEnd(int end) {
-        this.end = end;
     }
 }

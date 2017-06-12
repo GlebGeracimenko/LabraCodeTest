@@ -23,9 +23,6 @@ public class ThreadForSaveByNativeQuery extends ThreadForSave {
     @Autowired
     private List<CSVRecord> records;
 
-//    public ThreadForSaveByNativeQuery() {
-//    }
-
     public ThreadForSaveByNativeQuery(int start, int end) {
         super(start, end);
     }

@@ -9,19 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.codefire.dao.StubDao;
 import ua.com.codefire.dao.entity.StubEntity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import java.util.Map;
 
 /**
  * Created by gleb on 31.05.17.
  */
 @Repository
 public class StubDaoImpl implements StubDao {
-
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -40,15 +35,11 @@ public class StubDaoImpl implements StubDao {
 
     @Override
     @Transactional
-    public StubEntity saveStubByNativeQuery(String stubValue, Integer firstValue) {
-
-        SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
+    public void saveStubByNativeQuery(String stubValue, Integer firstValue) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createNativeQuery(nativeInsert);
         query.setParameter("stubValue", stubValue);
         query.setParameter("firstValue", firstValue);
         query.executeUpdate();
-//        transaction.commit();
-        return null;
     }
 }

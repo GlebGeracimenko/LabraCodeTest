@@ -28,4 +28,10 @@ public class SpringConfigs {
     public List<CSVRecord> recordsList() {
         return new CSVReader().getRecords();
     }
+
+    @Bean
+    @Lazy
+    public Integer sizeRecords() {
+        return recordsList().size();
+    }
 }

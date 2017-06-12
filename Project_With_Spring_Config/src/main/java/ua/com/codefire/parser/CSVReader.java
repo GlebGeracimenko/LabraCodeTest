@@ -14,6 +14,11 @@ import java.util.List;
  * Created by gleb on 31.05.17.
  */
 public class CSVReader {
+
+    public CSVReader() {
+        System.out.println("=================================================>START");
+    }
+
     public List<CSVRecord> getRecords() {
         File file = new File("stub.csv");
         try {
